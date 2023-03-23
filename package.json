@@ -1,6 +1,6 @@
 {
 	"name": "@sa-net/isa",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"type": "module",
 	"license": "Unlicense",
 	"author": {
@@ -45,6 +45,9 @@
 		"watch": [
 			"src"
 		]
+	},
+	"peerDependencies": {
+		"typescript": "^5"
 	},
 	"dependencies": {
 		"@michealpearce/utils": "^0.0"
