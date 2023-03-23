@@ -1,6 +1,6 @@
 {
 	"name": "@sa-net/isa",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"type": "module",
 	"license": "Unlicense",
 	"author": {
@@ -16,7 +16,7 @@
 	},
 	"packageManager": "yarn@3.3.0",
 	"main": "dist/index.mjs",
-	"types": "dist/index.d.ts",
+	"types": "src/index.ts",
 	"exports": {
 		"./package.json": "./package.json",
 		".": {
@@ -27,6 +27,7 @@
 	},
 	"files": [
 		"dist",
+		"src",
 		"package.json",
 		"README.md",
 		"LICENSE"

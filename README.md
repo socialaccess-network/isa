@@ -2,6 +2,8 @@
 
 A simple and lightweight library for creating and validating javascript variables. It is designed to be used with [typescript](https://www.typescriptlang.org/), but can also be used with plain javascript.
 
+If using typescript, it requires version 5.0 or higher as it makes heavy use of `const` generics.
+
 ## Installation
 
 ```bash
