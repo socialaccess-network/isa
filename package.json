@@ -16,7 +16,7 @@
 	},
 	"packageManager": "yarn@3.3.0",
 	"main": "dist/index.mjs",
-	"types": "src/index.ts",
+	"types": "dist/index.d.ts",
 	"exports": {
 		"./package.json": "./package.json",
 		".": {
@@ -27,7 +27,6 @@
 	},
 	"files": [
 		"dist",
-		"src",
 		"package.json",
 		"README.md",
 		"LICENSE"
