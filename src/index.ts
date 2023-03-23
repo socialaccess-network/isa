@@ -63,29 +63,29 @@ export const isaBigInt = checkFor<bigint>(isBigInt)
 export const isaAny = checkFor<any>(() => true)
 export const isaNever = checkFor<never>(() => false)
 
-export function isaExact<Type>(value: Type): IsaCheck<Type> {
+export function isaExact<const Type>(value: Type): IsaCheck<Type> {
 	return checkFor(val => val === value)
 }
 
-export function isaOptional<Type>(
+export function isaOptional<const Type>(
 	check: IsaCheck<Type>,
 ): IsaCheck<Optional<Type>> {
 	return checkFor(value => check(value) || notDefined(value))
 }
 
-export function isaNullable<Type>(
+export function isaNullable<const Type>(
 	check: IsaCheck<Type>,
 ): IsaCheck<Nullable<Type>> {
 	return checkFor(value => check(value) || isNull(value))
 }
 
-export function isaUnion<Type extends any[]>(
+export function isaUnion<const Type extends any[]>(
 	...checks: ArrayModel<Type>
 ): IsaCheck<Type[number]> {
 	return checkFor(value => checks.some(check => check(value)))
 }
 
-export function isaIntersection<Type extends object[]>(
+export function isaIntersection<const Type extends object[]>(
 	...checks: ArrayModel<Type>
 ): IsaCheck<{
 	[Key in keyof UnionToIntersection<Type[number]>]: UnionToIntersection<
@@ -95,7 +95,7 @@ export function isaIntersection<Type extends object[]>(
 	return checkFor(value => checks.every(check => check(value)))
 }
 
-export function isaRecord<Type extends Record<any, any>>(
+export function isaRecord<const Type extends Record<any, any>>(
 	model: RecordModel<Type>,
 ): IsaCheck<Type> {
 	const props = keys(model)
@@ -117,34 +117,34 @@ export function isaRecord<Type extends Record<any, any>>(
 	})
 }
 
-export function isaArray<Type extends any[]>(
+export function isaArray<const Type extends any[]>(
 	...checks: ArrayModel<Type>
 ): IsaCheck<Type[number][]> {
 	const validate = (value: any) => checks.some(check => check(value))
 	return checkFor(value => isArray(value) && value.every(validate))
 }
 
-export function isaExactArray<Type extends any[]>(
+export function isaExactArray<const Type extends any[]>(
 	...checks: ArrayModel<Type>
 ): IsaCheck<Type> {
 	const validate = (value: any) => checks.some(check => check(value))
 	return checkFor(value => isArray(value) && value.every(validate))
 }
 
-export function isaSet<Type extends any[]>(
+export function isaSet<const Type extends any[]>(
 	...checks: ArrayModel<Type>
 ): IsaCheck<Set<Type[number]>> {
 	const validate = (value: any) => checks.some(check => check(value))
 	return checkFor(value => isSet(value) && [...value].every(validate))
 }
 
-export function isaInstanceOf<Type extends object>(
+export function isaInstanceOf<const Type extends object>(
 	ctor: ClassType<Type>,
 ): IsaCheck<Type> {
 	return checkFor(value => value instanceof ctor)
 }
 
-export function isaMap<Key extends any, Value extends any>(
+export function isaMap<const Key, const Value>(
 	keyCheck: IsaCheck<Key>,
 	valueCheck: IsaCheck<Value>,
 ): IsaCheck<Map<Key, Value>> {
@@ -158,7 +158,7 @@ export function isaMap<Key extends any, Value extends any>(
 	})
 }
 
-export function isaIterable<Type extends any[]>(
+export function isaIterable<const Type extends any[]>(
 	...checks: ArrayModel<Type>
 ): IsaCheck<Iterable<Type[number]>> {
 	const validate = (value: any) => checks.some(check => check(value))
