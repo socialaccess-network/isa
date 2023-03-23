@@ -19,9 +19,13 @@ import {
 
 export type IsaCheck<Type> = {
 	// type only property to get the type of the check
-	'@': Type
+	'@'?: Type
 	(value: any): value is Type
 }
+
+export type IsaType<Check extends IsaCheck<any>> = Check['@'] extends undefined
+	? never
+	: Check['@']
 
 type PrimitiveValue =
 	| string
