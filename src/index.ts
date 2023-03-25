@@ -17,6 +17,15 @@ import {
 	notDefined,
 } from '@michealpearce/utils'
 
+type PrimitiveValue =
+	| string
+	| number
+	| boolean
+	| symbol
+	| bigint
+	| undefined
+	| null
+
 export type IsaCheck<Type> = {
 	// type only property to get the type of the check
 	'@'?: Type
@@ -27,25 +36,16 @@ export type IsaType<Check extends IsaCheck<any>> = Check['@'] extends undefined
 	? never
 	: Check['@']
 
-type PrimitiveValue =
-	| string
-	| number
-	| boolean
-	| symbol
-	| bigint
-	| undefined
-	| null
-
-function checkFor<const Type>(check: (value: any) => boolean): IsaCheck<Type> {
-	return check as IsaCheck<Type>
-}
-
 export type RecordModel<Type extends Record<any, any>> = {
 	[Key in keyof Type]: IsaCheck<Type[Key]>
 }
 
 export type ArrayModel<Type extends object> = {
 	[Key in keyof Type]: IsaCheck<Type[Key]>
+}
+
+function checkFor<const Type>(check: (value: any) => boolean): IsaCheck<Type> {
+	return check as IsaCheck<Type>
 }
 
 function keys<Thing extends object>(thing: Thing): Array<keyof Thing> {
