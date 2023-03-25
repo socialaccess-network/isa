@@ -44,12 +44,14 @@ export type ArrayModel<Type extends object> = {
 	[Key in keyof Type]: IsaCheck<Type[Key]>
 }
 
-function checkFor<const Type>(check: (value: any) => boolean): IsaCheck<Type> {
-	return check as IsaCheck<Type>
-}
-
 function keys<Thing extends object>(thing: Thing): Array<keyof Thing> {
 	return Object.keys(thing) as Array<keyof Thing>
+}
+
+export function checkFor<const Type>(
+	check: (value: any) => boolean,
+): IsaCheck<Type> {
+	return check as IsaCheck<Type>
 }
 
 export const isaString = checkFor<string>(isString)

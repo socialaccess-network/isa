@@ -118,13 +118,13 @@ const isData = isa.record({
 isa functions are just typescript type guards. However, a utility function is provided that can be used to create type guards with a additional `@` type-only property that can be used to get the type of what the type guard is checking for.
 
 ```typescript
-import { typeCheck, IsaType } from '@sa-net/isa'
+import { checkFor, IsaType } from '@sa-net/isa'
 
 class User {
 	declare name: string
 }
 
-export const isaUser = typeCheck<User>(value => value instanceof User)
+export const isaUser = checkFor<User>(value => value instanceof User)
 
 // User
 type ExtractedType = IsaType<typeof isaUser>
